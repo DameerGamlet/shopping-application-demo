@@ -1,0 +1,24 @@
+---
+server:
+  port:
+    8082
+
+spring:
+  application:
+    name: inventory-service
+  jpa:
+    show-sql: true
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      ddl-auto: none
+    properties:
+      hibernate:
+        generate_statistics: false
+        format_sql: true
+  flyway:
+    enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/inventory_db
+    username: admin
+    password: password
+    driver-class-name: org.postgresql.Driver
