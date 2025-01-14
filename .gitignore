@@ -9,6 +9,7 @@ build/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/
 *.iws
 *.iml
 *.ipr
@@ -42,5 +43,4 @@ bin/
 .DS_Store!/data/
 
 data/
-!/.idea/
-!/.gradle/
+/order-service/gradle/

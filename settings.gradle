@@ -1,3 +1,6 @@
 rootProject.name = 'shopping-application-demo'
+
 include 'product-service'
+include 'order-service'
+include 'inventory-service'
 
