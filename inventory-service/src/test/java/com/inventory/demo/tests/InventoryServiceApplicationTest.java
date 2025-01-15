@@ -5,6 +5,7 @@ import com.inventory.demo.model.Inventory;
 import com.inventory.demo.repository.InventoryRepository;
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,11 @@ public class InventoryServiceApplicationTest extends TestcontainersConfiguration
         inventoryOne.setQuantity(15);
 
         repository.save(inventoryOne);
+    }
+
+    @AfterEach
+    void tearDown() {
+        repository.deleteAll();
     }
 
     @Test

@@ -3,7 +3,7 @@ version: '4'
 services:
   postgres:
     image: postgres:17.2-alpine
-    container_name: shopping-postgres-container
+    container_name: shopping-order-postgres-container
     restart: no
     ports:
       - "5432:5432"

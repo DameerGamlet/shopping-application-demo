@@ -3,10 +3,10 @@ version: '4'
 services:
   postgres:
     image: postgres:17.2-alpine
-    container_name: shopping-postgres-container
+    container_name: shopping-inventory-postgres-container
     restart: no
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password

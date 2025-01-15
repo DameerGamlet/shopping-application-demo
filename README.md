@@ -130,6 +130,10 @@ shopping-application-demo/
 
 ![services-action-way.png](resources/readme/images/services-action-way.png)
 
+![img.png](resources/readme/images/img.png)
+
+![img.png](resources/readme/images/wiremock.png)
+
 ## Полный список технологий
 
 1. **Spring Boot** — для разработки микросервисов.
