@@ -5,5 +5,5 @@ server:
 spring:
   data:
     mongodb:
-      uri: mongodb://${MONGO_ROOT_NAME}:${MONGO_ROOT_PASSWORD}@localhost:27017/product_db?authSource=admin
+      uri: mongodb://admin:password@localhost:27017/product_db?authSource=admin
       uuid-representation: standard
