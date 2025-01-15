@@ -128,12 +128,6 @@ shopping-application-demo/
     - Использует Kafka или RabbitMQ.
     - Отправляет уведомления клиентам.
 
-![services-action-way.png](resources/readme/images/services-action-way.png)
-
-![img.png](resources/readme/images/img.png)
-
-![img.png](resources/readme/images/wiremock.png)
-
 ## Полный список технологий
 
 1. **Spring Boot** — для разработки микросервисов.
@@ -147,3 +141,20 @@ shopping-application-demo/
 9. **Docker** и **Docker Compose** — контейнеризация.
 10. **Gradle** — управление сборкой.
 11. **Git** — система контроля версий.
+
+## Памятки
+
+
+![services-action-way.png](resources/readme/images/services-action-way.png)
+
+![img.png](resources/readme/images/img.png)
+
+![img.png](resources/readme/images/wiremock.png)
+
+![gateway theme.png](resources/readme/images/gateway%20theme.png)
+
+![gateway theme 2.png](resources/readme/images/gateway%20theme%202.png)
+
+![gateway theme 3.png](resources/readme/images/gateway%20theme%203.png)
+
+![gateway main.png](resources/readme/images/gateway%20main.png)
