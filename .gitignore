@@ -44,3 +44,4 @@ bin/
 
 data/
 /order-service/gradle/
+/api-gateway/volume-data/
