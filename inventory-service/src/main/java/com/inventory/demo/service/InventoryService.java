@@ -13,6 +13,7 @@ public class InventoryService {
     private final InventoryRepository repository;
 
     public boolean isInStock(String scuCode, Integer quantity) {
+        log.info("GET_INVENTORY_IN_STOCK.START: Запрос на проверку наличия инвентаря на складе");
         return repository.existsBySkuCodeAndQuantityIsGreaterThanEqual(scuCode, quantity);
     }
 }

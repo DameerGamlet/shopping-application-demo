@@ -3,6 +3,8 @@ package com.order.demo.service;
 import com.order.demo.client.InventoryClient;
 import com.order.demo.dto.request.OrderRequest;
 import com.order.demo.dto.response.OrderResponse;
+import com.order.demo.exception.OrderIsNullException;
+import com.order.demo.exception.InventoryBySkuCodeInStockNotFoundException;
 import com.order.demo.mapper.OrderMapper;
 import com.order.demo.model.Order;
 import com.order.demo.repository.OrderRepository;
@@ -35,10 +37,10 @@ public class OrderService {
 
                 return mapper.orderToResponse(saved);
             } else {
-                throw new RuntimeException("Невозможно создать новый заказ");
+                throw new OrderIsNullException("Невозможно создать новый заказ");
             }
         } else {
-            throw new RuntimeException("Product with skuCode " + request.skuCode() + " is not in stock");
+            throw new InventoryBySkuCodeInStockNotFoundException("Inventory with skuCode " + request.skuCode() + " is not in stock");
         }
     }
 
