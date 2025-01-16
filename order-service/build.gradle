@@ -50,6 +50,11 @@ dependencies {
     implementation 'org.mapstruct:mapstruct:1.6.3'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
 
+    /* DOC */
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.3'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-api:2.8.3'
+
+
     /* TESTS */
     testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner'
 
