@@ -45,3 +45,6 @@ bin/
 data/
 /order-service/gradle/
 /api-gateway/volume-data/
+!/frontend/microservices-shop-frontend/node_modules/
+!/frontend/microservices-shop-frontend/.vscode/
+!/frontend/microservices-shop-frontend/.angular/
