@@ -40,8 +40,6 @@ public class OrderService {
 
                 final OrderResponse response = mapper.orderToResponse(saved);
 
-                // TODO: отправить сообщение в кафку
-                // orderNumber, email
                 final OrderPlacedEvent event = new OrderPlacedEvent(
                         response.orderNumber(),
                         request.userDetails().email()

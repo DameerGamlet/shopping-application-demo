@@ -15,18 +15,18 @@ spring:
       hibernate:
         generate_statistics: false
         format_sql: true
-#  kafka:
-#    bootstrap-servers: localhost:8082
-#    producer:
-#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-#      value-serializer: org.springframework.kafka.support.serializer.ErrorHandlingSerializer
-#      properties:
-#        spring.kafka.producer.properties.spring.kafka.value.serializer: org.apache.kafka.common.serialization.StringSerializer
-#    consumer:
-#      key-serializer: org.apache.kafka.common.serialization.StringDeserializer
-#      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
-#      properties:
-#        spring.kafka.consumer.properties.spring.kafka.value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.kafka.producer.properties.spring.kafka.value.serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.kafka.consumer.properties.spring.kafka.value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
   flyway:
     enabled: true
   datasource:
