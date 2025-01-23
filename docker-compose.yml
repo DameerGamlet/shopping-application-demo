@@ -1,4 +1,4 @@
-version: '3,8'
+version: '3.8'
 
 services:
   mongo-product:
@@ -31,7 +31,7 @@ services:
     command: [ "start-dev", "--import-realm" ]
     environment:
       DB_VENDOR: MYSQL
-      DB_ADDR: mysql
+      DB_ADDR: keycloak-mysql
       DB_DATABASE: keycloak
       DB_USER: keycloak
       DB_PASSWORD: password
@@ -91,7 +91,7 @@ services:
       - zookeeper
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://localhost:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
@@ -106,7 +106,7 @@ services:
       - "8085:8081"
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
-      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:29092'
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: broker:29092
       SCHEMA_REGISTRY_LISTENERS: http://schema-registry:8081
 
   kafka-ui:
@@ -128,8 +128,8 @@ services:
     container_name: shopping-maildev-container
     restart: no
     ports:
-      - "1080:1080" # Web UI
-      - "1025:1025" # SMTP
+      - "1080:1080"
+      - "1025:1025"
 
 volumes:
   mongo_data:
