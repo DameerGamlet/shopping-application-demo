@@ -1,0 +1,12 @@
+ext {
+    libpacks = [
+            testing    : [
+
+            ],
+            springBase : [
+
+            ],
+            commonUtils: [
+            ]
+    ]
+}

@@ -5,9 +5,8 @@ buildscript {
 }
 
 plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.4.1'
-    id 'io.spring.dependency-management' version '1.1.7'
+    id 'org.shopping.demo.common-plugins'
+    id 'org.shopping.demo.kafka-settings'
     id 'org.flywaydb.flyway' version "11.1.1"
     id 'com.github.davidmc24.gradle.plugin.avro' version "1.9.1"
 }
@@ -15,59 +14,24 @@ plugins {
 group = 'org.order.demo'
 version = '1.0.0'
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
-
-repositories {
-    mavenCentral()
-    maven { url "https://packages.confluent.io/maven/" }
-}
-
 ext {
     set('springCloudVersion', "2024.0.0")
 }
 
 dependencies {
     /* SPRING */
-    implementation 'org.springframework.kafka:spring-kafka'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
 
-    implementation 'org.apache.avro:avro:1.12.0'
-    implementation 'org.apache.avro:avro-maven-plugin:1.12.0'
-    implementation 'io.confluent:kafka-avro-serializer:7.8.0'
-    implementation 'io.confluent:kafka-schema-registry-client:7.8.0'
     // TESTS
-    testImplementation 'org.springframework.kafka:spring-kafka-test'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-testcontainers'
     testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner'
 
-    /* DOC */
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.3'
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-api:2.8.3'
-
-    /* TOOLS */
-    compileOnly 'org.projectlombok:lombok'
-    testCompileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    testAnnotationProcessor 'org.projectlombok:lombok'
-    // DATA
+    /* DATA */
     runtimeOnly 'org.postgresql:postgresql'
     implementation 'org.flywaydb:flyway-core'
     implementation 'org.flywaydb:flyway-database-postgresql'
-    // MAPPING
+    /* MAPPING */
     implementation 'org.mapstruct:mapstruct:1.6.3'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
 
@@ -77,8 +41,6 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'org.testcontainers:junit-jupiter:1.20.4'
     testImplementation 'org.testcontainers:testcontainers:1.20.4'
-
-    testImplementation 'org.testcontainers:kafka'
 }
 
 dependencyManagement {
@@ -113,16 +75,4 @@ tasks.register('customAvroCodeGeneration') {
 
 tasks.withType(JavaCompile).configureEach {
     dependsOn('customAvroCodeGeneration')
-}
-
-tasks.register('wrapper', Wrapper) {
-    gradleVersion = '8.8'
-}
-
-tasks.register('prepareKotlinBuildScriptModel') {
-
-}
-
-test {
-    useJUnitPlatform()
 }

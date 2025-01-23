@@ -1,0 +1,7 @@
+[versions]
+spring-boot = "3.4.1"
+
+[libraries]
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
