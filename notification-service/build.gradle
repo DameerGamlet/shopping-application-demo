@@ -1,0 +1,82 @@
+buildscript {
+    dependencies {
+        classpath "org.apache.avro:avro-tools:1.12.0"
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.1'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'com.github.davidmc24.gradle.plugin.avro' version "1.9.1"
+}
+
+group = 'com.notification.demo'
+version = '1.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://packages.confluent.io/maven/" }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation 'org.apache.kafka:kafka-clients:3.8.1'
+
+    implementation 'org.apache.avro:avro:1.12.0'
+    implementation 'org.apache.avro:avro-maven-plugin:1.12.0'
+    implementation 'io.confluent:kafka-avro-serializer:7.8.0'
+    implementation 'io.confluent:kafka-schema-registry-client:7.8.0'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:kafka'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+import org.apache.avro.tool.SpecificCompilerTool
+
+def avroSchemasDir = "src/main/resources/avro"
+def avroCodeGenerationDir = "src/main/java"
+
+sourceSets.main.java.srcDirs += [avroCodeGenerationDir]
+
+tasks.register('customAvroCodeGeneration') {
+    inputs.dir(avroSchemasDir)
+    outputs.dir(avroCodeGenerationDir)
+
+    logging.captureStandardOutput(LogLevel.INFO)
+    logging.captureStandardError(LogLevel.ERROR)
+    doLast {
+        new SpecificCompilerTool().run(System.in, System.out, System.err, List.of(
+                "-encoding", "UTF-8",
+                "-string",
+                "-fieldVisibility", "private",
+                "-noSetters",
+                "schema", "$projectDir/$avroSchemasDir".toString(), "$projectDir/$avroCodeGenerationDir".toString()
+        ))
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    dependsOn('customAvroCodeGeneration')
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

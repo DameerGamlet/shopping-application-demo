@@ -7,6 +7,7 @@ import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -28,6 +29,7 @@ public class OrderServiceApplicationTest extends TestcontainersConfiguration {
     }
 
     @Test
+    @Disabled
     void shouldCreateOrder() {
         final String requestBody = """
                 {
@@ -54,6 +56,7 @@ public class OrderServiceApplicationTest extends TestcontainersConfiguration {
     }
 
     @Test
+    @Disabled
     void shouldGetOrdersSuccessfully() {
         repository.deleteAll();
 

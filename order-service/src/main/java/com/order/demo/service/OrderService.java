@@ -40,14 +40,16 @@ public class OrderService {
 
                 final OrderResponse response = mapper.orderToResponse(saved);
 
-                final OrderPlacedEvent event = new OrderPlacedEvent(
-                        response.orderNumber(),
-                        request.userDetails().email()
-                );
+                final OrderPlacedEvent event = new OrderPlacedEvent();
 
-                log.info("CREATE_ORDER.KAFKA.SEND: Отправка на размещение заказа: {} на кафка топик начинается", order);
-                kafkaTemplate.send("order-placed", event);
-                log.info("CREATE_ORDER.KAFKA.SENT: Отправка на размещение заказа: {} на кафка топик завершена", order);
+                event.put(0, request.orderNumber());
+                event.put(1, request.userDetails().email());
+                event.put(2, request.userDetails().firstName());
+                event.put(3, request.userDetails().lastName());
+
+                log.info("CREATE_ORDER.KAFKA.SEND: Отправка на размещение заказа: {} на кафка топик начинается", event);
+                kafkaTemplate.send("order-placed-send-message", event);
+                log.info("CREATE_ORDER.KAFKA.SENT: Отправка на размещение заказа: {} на кафка топик завершена", event);
 
                 return response;
             } else {
