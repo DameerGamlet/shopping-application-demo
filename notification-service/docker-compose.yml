@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  maildev:
+    image: maildev/maildev:2.2.1
+    container_name: shopping-maildev-container
+    restart: no
+    ports:
+      - "1080:1080" # Web UI
+      - "1025:1025" # SMTP

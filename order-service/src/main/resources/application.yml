@@ -1,7 +1,5 @@
 ---
-server:
-  port:
-    8081
+server.port: 8081
 
 spring:
   application:
@@ -19,14 +17,12 @@ spring:
     bootstrap-servers: localhost:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      properties:
-        spring.kafka.producer.properties.spring.kafka.value.serializer: org.apache.kafka.common.serialization.StringSerializer
-    consumer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      properties:
-        spring.kafka.consumer.properties.spring.kafka.value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+    properties:
+      schema.registry.url: http://localhost:8085
+  #    consumer:
+  #      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+  #      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
   flyway:
     enabled: true
   datasource:
