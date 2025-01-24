@@ -3,10 +3,32 @@ server:
     8080
 
 spring:
+  application:
+    name: product-service
   data:
     mongodb:
       uri: mongodb://admin:password@localhost:27017/product_db?authSource=admin
       uuid-representation: standard
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
+    tags:
+      application: Product Service
+  observations:
+    key-values:
+      application: product-service
+  tracing:
+    sampling:
+      probability: 1.0
 
 springdoc:
   swagger-ui:
