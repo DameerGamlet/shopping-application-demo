@@ -2,10 +2,11 @@ plugins {
     id 'java'
     id 'org.springframework.boot'
     id 'io.spring.dependency-management'
+    id 'com.google.cloud.tools.jib'
 }
 
 group = 'org.gateway.demo'
-version = '1.0.0'
+version = '1.3.0'
 
 repositories {
     mavenCentral()
@@ -45,6 +46,8 @@ dependencyManagement {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
 }
+
+apply from: '../buildSrc/src/main/groovy/jib-task.gradle'
 
 tasks.named('test') {
     useJUnitPlatform()

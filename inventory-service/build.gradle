@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'org.inventory.demo'
-version = '1.0.0'
+version = '1.3.0'
 
 dependencies {
     /* SPRING */
@@ -27,3 +27,5 @@ dependencies {
     testImplementation 'org.testcontainers:junit-jupiter:1.20.4'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
+
+apply from: '../buildSrc/src/main/groovy/jib-task.gradle'

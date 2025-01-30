@@ -1,0 +1,17 @@
+jib {
+    from {
+        image = JIB_BASE_DOCKER_IMAGE
+    }
+    to {
+        image = "${DOCKER_HUB_USERNAME}/${project.name}"
+        tags = [version, project.version] as List<String>
+        auth {
+            username = DOCKER_HUB_USERNAME
+            password = DOCKER_HUB_PASSWORD
+        }
+    }
+    container {
+        format = JIB_IMAGE_FORMAT
+        getCreationTime().set(Instant.now().toString())
+    }
+}

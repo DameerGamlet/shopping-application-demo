@@ -1,18 +1,18 @@
 version: '3.8'
 
 services:
-  mongo-product:
-    image: mongo:7.0
-    container_name: shopping-mongodb-product
-    restart: no
-    ports:
-      - "27017:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: password
-      MONGO_INITDB_DATABASE: product_db
-    volumes:
-      - mongo_data:/data/db
+#  mongo-product:
+#    image: mongo:7.0
+#    container_name: shopping-mongodb-product
+#    restart: no
+#    ports:
+#      - "27017:27017"
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: admin
+#      MONGO_INITDB_ROOT_PASSWORD: password
+#      MONGO_INITDB_DATABASE: product_db
+#    volumes:
+#      - mongo_data:/data/db
 
   keycloak-mysql:
     container_name: shopping-keycloak-mysql
@@ -44,32 +44,32 @@ services:
     depends_on:
       - keycloak-mysql
 
-  postgres-order:
-    image: postgres:17.2-alpine
-    container_name: shopping-postgres-order
-    restart: no
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: order_db
-    volumes:
-      - postgres_data_order:/var/lib/postgresql/data
+#  postgres-order:
+#    image: postgres:17.2-alpine
+#    container_name: shopping-postgres-order
+#    restart: no
+#    ports:
+#      - "5432:5432"
+#    environment:
+#      POSTGRES_USER: admin
+#      POSTGRES_PASSWORD: password
+#      POSTGRES_DB: order_db
+#    volumes:
+#      - postgres_data_order:/var/lib/postgresql/data
 
-  postgres-inventory:
-    image: postgres:17.2-alpine
-    container_name: shopping-postgres-inventory
-    restart: no
-    ports:
-      - "5433:5432"
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: inventory_db
-    volumes:
-      - postgres_data_inventory:/var/lib/postgresql/data
-      - ./init-scripts:/docker-entrypoint-initdb.d
+#  postgres:
+#    image: postgres:17.2-alpine
+#    container_name: shopping-postgres
+#    restart: no
+#    ports:
+#      - "5433:5432"
+#    environment:
+#      POSTGRES_USER: admin
+#      POSTGRES_PASSWORD: password
+#      POSTGRES_DB: inventory_db
+#    volumes:
+#      - postgres_data_inventory:/var/lib/postgresql/data
+#      - ./init-scripts:/docker-entrypoint-initdb.d
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.8.0

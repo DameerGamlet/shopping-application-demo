@@ -11,7 +11,7 @@ plugins {
 }
 
 group = 'com.notification.demo'
-version = '1.0.0'
+version = '1.3.0'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mail'
@@ -20,6 +20,8 @@ dependencies {
     testImplementation 'org.testcontainers:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
+
+apply from: '../buildSrc/src/main/groovy/jib-task.gradle'
 
 import org.apache.avro.tool.SpecificCompilerTool
 

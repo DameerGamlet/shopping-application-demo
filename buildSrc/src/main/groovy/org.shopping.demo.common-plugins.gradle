@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot'
     id 'io.spring.dependency-management'
+    id 'com.google.cloud.tools.jib'
 }
 
 java {
@@ -56,6 +57,26 @@ tasks.register('wrapper', Wrapper) {
 tasks.register('prepareKotlinBuildScriptModel') {
 
 }
+
+//jib {
+//    from {
+//        image = jibBaseDockerImage
+//    }
+//    to {
+//        image = "${dockerHubUsername}/${project.name}"
+////        image = "${dockerHubUsername}/${project.name}:${version}"
+////        image = "${dockerHubUsername}/${project.name}:${project.version}"
+//        tags = [project.version] as List<String>
+//        auth {
+//            username = dockerHubUsername
+//            password = dockerHubPassword
+//        }
+//    }
+//    container {
+//        format = jibImageFormat
+//        getCreationTime().set(Instant.now().toString())
+//    }
+//}
 
 test {
     useJUnitPlatform()

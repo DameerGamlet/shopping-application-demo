@@ -50,3 +50,4 @@ frontend/microservices-shop-frontend/.angular/
 frontend/microservices-shop-frontend/.vscode
 docker/tempo/tempo-data/blocks
 volume-data/mysql_keycloak_data
+/gradle.properties

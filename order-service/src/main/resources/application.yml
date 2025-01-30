@@ -37,7 +37,8 @@ springdoc:
     path: /api-docs
 
 inventory:
-  url: http://localhost:8082
+  service:
+    url: http://localhost:8082
 
 management:
   health:
@@ -88,3 +89,6 @@ resilience4j:
       inventory:
         max-attempts: 3
         wait-duration: 2s
+
+loki:
+  url: http://localhost:3100/loki/api/v1/push

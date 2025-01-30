@@ -12,7 +12,7 @@ plugins {
 }
 
 group = 'org.order.demo'
-version = '1.0.0'
+version = '1.3.0'
 
 ext {
     set('springCloudVersion', "2024.0.0")
@@ -48,6 +48,8 @@ dependencyManagement {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
 }
+
+apply from: '../buildSrc/src/main/groovy/jib-task.gradle'
 
 import org.apache.avro.tool.SpecificCompilerTool
 

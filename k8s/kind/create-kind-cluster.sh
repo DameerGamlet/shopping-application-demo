@@ -1,0 +1,1 @@
+kind create cluster --name shopping-microservices --config kind-config.yml
